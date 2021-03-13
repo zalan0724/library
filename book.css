@@ -19,7 +19,7 @@
     width: 100%;
     text-align: left;
     position: relative;
-    top: 130px;
+    top: 108px;
 }
 
 .bookTitle{
@@ -35,24 +35,37 @@
     font-size: 13pt;
     padding-bottom: 3px;
 }
+
+#allPages{
+    padding-bottom: 15px;
+}
+
 .bookButton{
-    width: 54px;
-    height: 30px;
+    width: 44px;
+    height: 44px;
     margin: 0px;
     outline: none;
-    border-radius: 6px;
+    border-radius: 22px;
     line-height: 0px;
     font-size: 12pt;
+    color: white;
+}
+
+.bookBottomButtons{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 #editButton{
-    background-color: rgb(123, 123, 253);
+    background-color: rgb(76, 76, 153);
 }
 
 #plusButton{
-    background-color: rgb(111, 255, 111);
+    background-color: rgb(66, 145, 66);
 }
 
 #minusButton{
-    background-color: rgb(255, 131, 131);
+    background-color: rgb(177, 83, 83);
 }
