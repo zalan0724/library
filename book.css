@@ -1,0 +1,58 @@
+.book{
+    display: inline-block;
+    background-color: white;
+    text-align: center;
+    height: 300px;
+    width: 200px;
+    border-radius: 20px;
+    margin: 15px;
+    padding: 15px;
+}
+
+.bookTop{
+    width: 100%;
+    text-align: center;
+}
+
+.bookBottom{
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    position: relative;
+    top: 130px;
+}
+
+.bookTitle{
+    font-size: 22pt;
+    font-weight: bold;
+}
+
+.bookAuthor{
+    font-size: 12pt;
+}
+
+.bookPages{
+    font-size: 13pt;
+    padding-bottom: 3px;
+}
+.bookButton{
+    width: 54px;
+    height: 30px;
+    margin: 0px;
+    outline: none;
+    border-radius: 6px;
+    line-height: 0px;
+    font-size: 12pt;
+}
+
+#editButton{
+    background-color: rgb(123, 123, 253);
+}
+
+#plusButton{
+    background-color: rgb(111, 255, 111);
+}
+
+#minusButton{
+    background-color: rgb(255, 131, 131);
+}

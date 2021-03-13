@@ -69,14 +69,19 @@ nav{
     height: 100%;
 }
 
-.book{
+.addButton{
+    position: absolute;
     display: inline-block;
-    background-color: white;
-    text-align: center;
-    height: 300px;
-    width: 200px;
-    border-radius: 20px;
-    margin: 15px;
+    height: 50px;
+    width: 50px;
+    line-height: 0px;
+    font-size: 60px;
+    color: white;
+    outline: none;
+    border-radius: 25px;
+    background-color: #1A1A1A;
+    bottom: 10px;
+    right: 310px;
 }
 
 @media (max-width: 822px) {
@@ -89,4 +94,9 @@ nav{
     .content{
         align-items: center;
         justify-content: center;
+    }
+
+    .addButton{
+        right: 10px;
+    }
 }

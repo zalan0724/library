@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="style.css" rel="stylesheet" type="text/css">
+    <link href="book.css" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -18,14 +19,40 @@
             <div class="listItem"> 1. Book name</div>
         </div>
     </nav>
+
+    <input type="button" value="+" class="addButton">
+
     <div class="contentBox">
         <div class="content">
+
             <div class="book">
-                szai
+                <div class="bookTop">
+                    <p class="bookTitle">Robin Hood</p>
+                    <p class="bookAuthor">by Howard Pyle</p>
+                </div>
+                <div class="bookBottom">
+                    <p class="bookPages" id="currentPages">Current: 134</p>
+                    <p class="bookPages" id="allPages">All pages: 244</p>
+                    <input type="button" value="Edit" class="bookButton" id="editButton">
+                    <input type="button" value="+" class="bookButton" id="plusButton">
+                    <input type="button" value="-" class="bookButton" id="minusButton">
+                </div>
             </div>
+
             <div class="book">
-                szai
+                <div class="bookTop">
+                    <p class="bookTitle">Lord of Rings</p>
+                    <p class="bookAuthor">by J. R. R. Tolkien</p>
+                </div>
+                <div class="bookBottom">
+                    <p class="bookPages" id="currentPages">Current: 134</p>
+                    <p class="bookPages" id="allPages">All pages: 244</p>
+                    <input type="button" value="Edit" class="bookButton" id="editButton">
+                    <input type="button" value="+" class="bookButton" id="plusButton">
+                    <input type="button" value="-" class="bookButton" id="minusButton">
+                </div>
             </div>
+
         </div>
     </div>
 </body>
