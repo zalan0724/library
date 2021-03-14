@@ -83,20 +83,3 @@ nav{
     bottom: 10px;
     right: 310px;
 }
-
-@media (max-width: 839px) {
-    nav {
-      display: none;
-    }
-    .contentBox{
-        padding-right: 30px;
-    }
-    .content{
-        align-items: center;
-        justify-content: center;
-    }
-
-    .addButton{
-        right: 10px;
-    }
-}
