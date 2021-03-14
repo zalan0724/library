@@ -21,7 +21,7 @@
         </div>
     </nav>
 
-    <input type="button" value="+" class="addButton">
+    <button class="addButton">+</button>
 
     <div class="contentBox">
         <div class="content">
@@ -33,7 +33,7 @@
                 </div>
                 <div class="bookBottom">
                     <p class="bookPages" id="currentPages">Current: 134</p>
-                    <p class="bookPages" id="allPages">All pages: 244</p>
+                    <p class="bookPages" id="totalPages">Total pages: 244</p>
                     <div class="bookBottomButtons">
                         <button class="bookButton" id="editButton">Edit</button>
                         <button class="bookButton" id="minusButton">-</button>
@@ -49,7 +49,7 @@
                 </div>
                 <div class="bookBottom">
                     <p class="bookPages" id="currentPages">Current: 134</p>
-                    <p class="bookPages" id="allPages">All pages: 244</p>
+                    <p class="bookPages" id="totalPages">Total pages: 244</p>
                     <div class="bookBottomButtons">
                         <button class="bookButton" id="editButton">Edit</button>
                         <button class="bookButton" id="minusButton">-</button>
@@ -61,8 +61,25 @@
         </div>
     </div>
 
-    <div class="addingNewBookInterface">
-
+    <div class="newBookInterface">
+        <div class="newBookTab">
+            <div class="giveDetail">
+                <span>Book name: </span>
+                <input type="text" placeholder="e.g., Harry Potter">
+            </div>
+            <div class="giveDetail">
+                <span>Author: </span>
+                <input type="text" placeholder="e.g., J. K. Rowling">
+            </div>
+            <div class="giveDetail">
+                <span>Total pages: </span>
+                <input type="number" placeholder="240">
+            </div>
+            <div class="giveDetail">
+                <span>Current page: </span>
+                <input type="number" placeholder="10">
+            </div>
+        </div>
     </div>
 </body>
 </html>

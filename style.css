@@ -84,7 +84,7 @@ nav{
     right: 310px;
 }
 
-@media (max-width: 822px) {
+@media (max-width: 839px) {
     nav {
       display: none;
     }
