@@ -38,3 +38,10 @@
     font-size: 24pt;
     padding: 3px;
 }
+
+.newBookButton{
+    display: inline-block;
+    font-size: 24pt;
+    background-color: rgb(207, 207, 207);
+    line-height: 0px;
+}
