@@ -43,22 +43,6 @@
                 </div>
             </div>
 
-            <div class="book">
-                <div class="bookTop">
-                    <p class="bookTitle">Robin Hood</p>
-                    <p class="bookAuthor">by Howard Pyle</p>
-                </div>
-                <div class="bookBottom">
-                    <p class="bookPages" id="currentPages">Current: 134</p>
-                    <p class="bookPages" id="totalPages">Total pages: 244</p>
-                    <div class="bookBottomButtons">
-                        <button class="bookButton" id="editButton">Edit</button>
-                        <button class="bookButton" id="minusButton">-</button>
-                        <button class="bookButton" id="plusButton">+</button>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
 
@@ -66,19 +50,19 @@
         <div class="newBookTab">
             <div class="giveDetail">
                 <span>Book name: </span>
-                <input type="text" placeholder="e.g., Harry Potter">
+                <input type="text" placeholder="e.g., Harry Potter" id="giveBookName">
             </div>
             <div class="giveDetail">
                 <span>Author: </span>
-                <input type="text" placeholder="e.g., J. K. Rowling">
+                <input type="text" placeholder="e.g., J. K. Rowling" id="giveBookAuthor">
             </div>
             <div class="giveDetail">
                 <span>Total pages: </span>
-                <input type="number" placeholder="240">
+                <input type="number" placeholder="240" id="giveBookTotal">
             </div>
             <div class="giveDetail">
                 <span>Current page: </span>
-                <input type="number" placeholder="10">
+                <input type="number" placeholder="10" id="giveBookCurrent">
             </div>
             <button class="newBookButton" id="newBookAdd">Add</button>
             <button class="newBookButton" id="newBookCancel">Cancel</button>

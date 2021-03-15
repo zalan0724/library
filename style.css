@@ -62,7 +62,7 @@ nav{
 .content{
     align-items: flex-end;
     justify-content: flex-start;
-    border: 1px solid white;
+    border: 0px solid white;
     display: flex;
     flex-wrap: wrap;
     width: 100%;
