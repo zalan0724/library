@@ -128,3 +128,29 @@ nav{
     transform: scale(1.2);
 }
 
+.emptyContainer{
+    position: sticky;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding-right: 300px;
+    align-items: center;
+    justify-content: flex-start;
+    color: white;
+}
+
+.emptyTextContainer{
+    margin-left: 50px;
+    padding-left: 10px;
+    border-left: 2px solid white;
+}
+
+#mainEmptyText{
+    font-size:30pt;
+    margin-bottom: 20px;
+}
+
+#subEmptyText{
+    font-size: 15pt;
+}
+

@@ -38,4 +38,8 @@
         display: block;
         margin-bottom: 10px;
     }
+
+    .emptyContainer{
+        padding-right: 20px;
+    }
 }
