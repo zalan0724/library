@@ -13,6 +13,16 @@ let giveBookAuthor = document.querySelector('#giveBookAuthor')
 let giveBookTotal = document.querySelector('#giveBookTotal')
 let giveBookCurrent = document.querySelector('#giveBookCurrent')
 
+//Editing book elements
+let editBookInterface = document.querySelector('.editBookInterface')
+let editBookSave = document.querySelector('#editBookSave')
+let editBookCancel = document.querySelector('#editBookCancel')
+let editBookInputs = document.querySelectorAll('.editBookTab input')
+let editBookName = document.querySelector('#editBookName')
+let editBookAuthor = document.querySelector('#editBookAuthor')
+let editBookTotal = document.querySelector('#editBookTotal')
+let editBookCurrent = document.querySelector('#editBookCurrent')
+
 let bookLibrary = []
 
 class Book{
@@ -26,7 +36,7 @@ class Book{
 
     get bookCard(){
         const bookTemplate =`
-        <div class="book" id="${this.id}">
+        <div class="book">
             <div class="bookTop">
                 <p class="bookTitle">${this.name}</p>
                 <p class="bookAuthor">by ${this.author}</p>
@@ -35,7 +45,7 @@ class Book{
                 <p class="bookPages" id="currentPages">Current: ${this.currentPage}</p>
                 <p class="bookPages" id="totalPages">Total pages: ${this.totalPage}</p>
                 <div class="bookBottomButtons">
-                    <button class="bookButton" id="editButton">Edit</button>
+                    <button class="bookButton" id="editButton" onclick="editBook(${this.id})">Edit</button>
                     <button class="bookButton" id="minusButton" onclick="reduceCurrent(${this.id})">-</button>
                     <button class="bookButton" id="plusButton" onclick="addCurrent(${this.id})">+</button>
                 </div>
@@ -45,17 +55,17 @@ class Book{
     }
 
     get listItem(){
-        const listTemplate = `<div class="listItem">${this.name}</div>`
+        const listTemplate = `
+        <div class="listItem">
+            <div class="listName">${this.name}</div>
+            <button class="listButton" id="listEditButton" onclick="editBook(${this.id})">Edit</button>
+            <button class="listButton" id="listRemoveButton" onclick="removeBook(${this.id})">Remove</button>
+        </div>`
         return listTemplate
-    }
-
-    get editInterface(){
-        const editTemplate = ``
-        return editTemplate
     }
 }
 
-function getID(){
+function getNextID(){
     let id = bookLibrary.length
     return id
 }
@@ -78,6 +88,34 @@ function reduceCurrent(id){
 
 }
 
+function editBook(id){
+    console.log('szia')
+    editBookName.value = bookLibrary[id].name
+    editBookAuthor.value = bookLibrary[id].author
+    editBookTotal.value = bookLibrary[id].totalPage
+    editBookCurrent.value = bookLibrary[id].currentPage
+    editBookSave.setAttribute('onclick',`saveBook(${id})`)
+    editBookInterface.style.display = 'flex'
+}
+
+function saveBook(id){
+    bookLibrary[id].name = editBookName.value
+    bookLibrary[id].author = editBookAuthor.value
+    bookLibrary[id].totalPage = editBookTotal.value
+    bookLibrary[id].currentPage = editBookCurrent.value
+    editBookInterface.style.display = 'none'
+    refreshLibrary()
+}
+
+function removeBook(id){
+    bookLibrary.splice(id, 1)
+    for(let i=id; i<bookLibrary.length; i++){
+        bookLibrary[i].id--
+    }
+    refreshLibrary()
+    console.log(bookLibrary)
+}
+
 function refreshLibrary(){
     content.innerHTML=''
     navList.innerHTML=''
@@ -92,15 +130,10 @@ function refreshLibrary(){
 }
 
 function addBookToLibrary(){
-    let newBook = new Book(giveBookName.value, giveBookAuthor.value, giveBookTotal.value, giveBookCurrent.value, getID())
+    let newBook = new Book(giveBookName.value, giveBookAuthor.value, giveBookTotal.value, giveBookCurrent.value, getNextID())
     bookLibrary.push(newBook)
     refreshLibrary()
 }
-
-function addCurrentPage(){
-
-}
-
 
 //EventListeners
 addButton.addEventListener('click',()=>{
@@ -119,6 +152,14 @@ newBookCancel.addEventListener('click', ()=>{
 newBookAdd.addEventListener('click', ()=>{
     addBookToLibrary();
     newBookInterface.style.display = 'none'
+})
+
+editBookCancel.addEventListener('click', ()=>{
+    editBookName.value = ''
+    editBookAuthor.value = ''
+    editBookTotal.value = ''
+    editBookCurrent.value = ''
+    editBookInterface.style.display = 'none'
 })
 
 

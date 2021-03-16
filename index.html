@@ -8,6 +8,7 @@
     <link href="book.css" rel="stylesheet" type="text/css">
     <link href="newBookInterface.css" rel="stylesheet" type="text/css">
     <link href="mobileStyle.css" rel="stylesheet" type="text/css">
+    <link href="editBookInterface.css" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap" rel="stylesheet">
     <title>Library</title>
@@ -16,7 +17,12 @@
     <nav>
         <div class="title">Library</div>
         <div class="list">
-            <div class="listItem">Robin Hood</div>
+            <!--List items go here-->
+            <div class="listItem">
+                <div class="listName">Lord of Ring</div>
+                <button class="listButton" id="listEditButton">Edit</button>
+                <button class="listButton" id="listRemoveButton">Remove</button>
+            </div>
         </div>
     </nav>
 
@@ -24,25 +30,11 @@
 
     <div class="contentBox">
         <div class="content">
-
-            <div class="book">
-                <div class="bookTop">
-                    <p class="bookTitle">Robin Hood</p>
-                    <p class="bookAuthor">by Howard Pyle</p>
-                </div>
-                <div class="bookBottom">
-                    <p class="bookPages" id="currentPages">Current: 134</p>
-                    <p class="bookPages" id="totalPages">Total pages: 244</p>
-                    <div class="bookBottomButtons">
-                        <button class="bookButton" id="editButton">Edit</button>
-                        <button class="bookButton" id="minusButton">-</button>
-                        <button class="bookButton" id="plusButton">+</button>
-                    </div>
-                </div>
-            </div>
-
+            <!--Books go here-->
         </div>
     </div>
+
+<!--New Book Interface--> 
 
     <div class="newBookInterface">
         <div class="newBookTab">
@@ -64,6 +56,31 @@
             </div>
             <button class="newBookButton" id="newBookAdd">Add</button>
             <button class="newBookButton" id="newBookCancel">Cancel</button>
+        </div>
+    </div>
+
+<!--Edit Book Interface-->
+
+    <div class="editBookInterface">
+        <div class="editBookTab">
+            <div class="editDetail">
+                <span>Book name: </span>
+                <input type="text" placeholder="e.g., Harry Potter" id="editBookName">
+            </div>
+            <div class="editDetail">
+                <span>Author: </span>
+                <input type="text" placeholder="e.g., J. K. Rowling" id="editBookAuthor">
+            </div>
+            <div class="editDetail">
+                <span>Total pages: </span>
+                <input type="number" placeholder="240" id="editBookTotal">
+            </div>
+            <div class="editDetail">
+                <span>Current page: </span>
+                <input type="number" placeholder="10" id="editBookCurrent">
+            </div>
+            <button class="editBookButton" id="editBookSave">Save</button>
+            <button class="editBookButton" id="editBookCancel">Cancel</button>
         </div>
     </div>
 

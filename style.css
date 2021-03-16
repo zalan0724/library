@@ -32,6 +32,7 @@ nav{
 .title{
     font-size: 52pt;
     border-bottom: 2px solid white;
+    user-select: none;
 }
 
 .list{
@@ -43,15 +44,51 @@ nav{
 
 .listItem{
     display: inline-block;
+    box-sizing: border-box;
     background-color: white;
     color: black;
     font-size: 19px;
-    width: 240px;
-    height: 40px;
+    width: 300px;
+    min-height: 40px;
     padding: 10px;
     border-radius: 8px;
     margin-top: 20px;
+    user-select: none;
 
+}
+
+.listButton{
+    position: relative;
+    right: 0px;
+    top: 0px;
+    padding: 5px;
+    color: white;
+    border-radius: 5px;
+    outline: none;
+    transition-duration: 0.2s;
+}
+
+.listName{
+    display: inline-block;
+    position: relative;
+    top:2px;
+    width: 175px;
+}
+
+#listRemoveButton{
+    background-color: rgb(177, 83, 83);
+}
+
+#listRemoveButton:hover{
+    background-color: rgb(119, 56, 56);
+}
+
+#listEditButton{
+    background-color: rgb(76, 76, 153);
+}
+
+#listEditButton:hover{
+    background-color: rgb(56, 56, 112);
 }
 
 .contentBox{

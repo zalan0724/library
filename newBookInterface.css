@@ -50,6 +50,10 @@
 
 #newBookCancel{
     background-color: rgb(177, 83, 83);
+    transition-duration: 0.2s;
+}
+#newBookCancel:hover{
+    background-color: rgb(216, 102, 102);
 }
 
 #newBookAdd{
