@@ -3,7 +3,6 @@ let content = document.querySelector('.content')
 let navList = document.querySelector('.list')
 let emptyContainer = document.querySelector('.emptyContainer')
 
-
 //Adding new book elements
 let newBookInterface = document.querySelector('.newBookInterface')
 let newBookAdd = document.querySelector('#newBookAdd')
@@ -75,9 +74,8 @@ function checkAddInputs(){
     let result = 0
     if(giveBookAuthor.value!='') result++
     if(giveBookName.value!='') result++
-    if(giveBookCurrent.value!='' && giveBookCurrent.value<=giveBookTotal.value) result++
+    if(giveBookCurrent.value!='' && giveBookCurrent.value<=giveBookTotal.value && giveBookCurrent.value>0) result++
     if(giveBookTotal.value!='' && giveBookTotal.value>0) result++
-
     return result
 }
 
@@ -85,9 +83,8 @@ function checkEditInputs(){
     let result = 0
     if(editBookAuthor.value!='') result++
     if(editBookName.value!='') result++
-    if(editBookCurrent.value!='' && editBookCurrent.value<=editBookTotal.value) result++
+    if(editBookCurrent.value!='' && editBookCurrent.value<=editBookTotal.value && editBookCurrent.value>0) result++
     if(editBookTotal.value!='' && editBookTotal.value>0) result++
-
     return result
 }
 
@@ -128,10 +125,8 @@ function saveBook(id){
     else{
         if(editBookAuthor.value=='') editBookAuthor.style.backgroundColor = 'rgb(177, 83, 83)'
         if(editBookName.value=='') editBookName.style.backgroundColor = 'rgb(177, 83, 83)'
-        if(editBookTotal.value=='') editBookTotal.style.backgroundColor = 'rgb(177, 83, 83)'
-        if(editBookTotal.value<=0) editBookTotal.style.backgroundColor = 'rgb(177, 83, 83)'
-        if(editBookCurrent.value=='') editBookCurrent.style.backgroundColor = 'rgb(177, 83, 83)'
-        if(editBookCurrent.value>editBookTotal.value) editBookCurrent.style.backgroundColor = 'rgb(177, 83, 83)'
+        if(editBookTotal.value=='' || editBookTotal.value<=0) editBookTotal.style.backgroundColor = 'rgb(177, 83, 83)'
+        if(editBookCurrent.value=='' || editBookCurrent.value>editBookTotal.value || editBookCurrent.value <= 0) editBookCurrent.style.backgroundColor = 'rgb(177, 83, 83)'
     }
 }
 
@@ -172,10 +167,8 @@ function addBookToLibrary(){
     else{
         if(giveBookAuthor.value=='') giveBookAuthor.style.backgroundColor = 'rgb(177, 83, 83)'
         if(giveBookName.value=='') giveBookName.style.backgroundColor = 'rgb(177, 83, 83)'
-        if(giveBookTotal.value=='') giveBookTotal.style.backgroundColor = 'rgb(177, 83, 83)'
-        if(giveBookTotal.value<=0) giveBookTotal.style.backgroundColor = 'rgb(177, 83, 83)'
-        if(giveBookCurrent.value=='') giveBookCurrent.style.backgroundColor = 'rgb(177, 83, 83)'
-        if(giveBookCurrent.value>giveBookCurrent.value) giveBookCurrent.style.backgroundColor = 'rgb(177, 83, 83)'
+        if(giveBookTotal.value=='' || giveBookTotal.value<=0) giveBookTotal.style.backgroundColor = 'rgb(177, 83, 83)'
+        if(giveBookCurrent.value=='' || giveBookCurrent.value>giveBookTotal.value || giveBookCurrent.value<=0) giveBookCurrent.style.backgroundColor = 'rgb(177, 83, 83)'
     }
 }
 
