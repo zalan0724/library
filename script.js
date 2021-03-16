@@ -36,8 +36,8 @@ class Book{
                 <p class="bookPages" id="totalPages">Total pages: ${this.totalPage}</p>
                 <div class="bookBottomButtons">
                     <button class="bookButton" id="editButton">Edit</button>
-                    <button class="bookButton" id="minusButton">-</button>
-                    <button class="bookButton" id="plusButton" onclick="modifyCurrent(${this.id})">+</button>
+                    <button class="bookButton" id="minusButton" onclick="reduceCurrent(${this.id})">-</button>
+                    <button class="bookButton" id="plusButton" onclick="addCurrent(${this.id})">+</button>
                 </div>
             </div>
         </div>`
@@ -48,6 +48,11 @@ class Book{
         const listTemplate = `<div class="listItem">${this.name}</div>`
         return listTemplate
     }
+
+    get editInterface(){
+        const editTemplate = ``
+        return editTemplate
+    }
 }
 
 function getID(){
@@ -55,9 +60,21 @@ function getID(){
     return id
 }
 
-function modifyCurrent(id){
-    console.log(bookLibrary[id].currentPage)
-    refreshLibrary()
+function addCurrent(id){
+    if(bookLibrary[id].currentPage<bookLibrary[id].totalPage){
+        console.log('szai')
+        bookLibrary[id].currentPage++
+        refreshLibrary()
+    }
+
+}
+
+function reduceCurrent(id){
+    if(bookLibrary[id].currentPage>1){
+        console.log('szai')
+        bookLibrary[id].currentPage--
+        refreshLibrary()
+    }
 
 }
 

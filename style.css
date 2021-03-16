@@ -1,6 +1,7 @@
 html{
     min-width: 292px;
 }
+
 *{
     margin: 0px;
     padding: 0px;
@@ -70,7 +71,7 @@ nav{
 }
 
 .addButton{
-    position: absolute;
+    position: fixed;
     display: inline-block;
     height: 50px;
     width: 50px;
@@ -81,6 +82,12 @@ nav{
     border-radius: 25px;
     background-color: #1A1A1A;
     bottom: 15px;
-    right: 310px;
+    right: 315px;
+
+    transition-duration: 0.2s;
+}
+
+.addButton:hover{
+    transform: scale(1.2);
 }
 
