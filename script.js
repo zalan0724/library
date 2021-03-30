@@ -220,6 +220,7 @@ function restoreData(){
 
 function removeLoadingScreen(){
     loadingScreen.style.display = 'none'
+    console.log('Loading screen removed')
 }
 
 //EventListeners
