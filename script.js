@@ -223,6 +223,7 @@ function removeLoadingScreen(){
     console.log('Loading screen removed')
 }
 
+removeLoadingScreen()
 //EventListeners
 addButton.addEventListener('click',()=>{
     newBookInterface.style.display = 'flex'
@@ -258,5 +259,3 @@ newBookInputs.forEach(element => element.addEventListener('input', ()=>{
 editBookInputs.forEach(element => element.addEventListener('input', ()=>{
     element.style.backgroundColor = 'white'
 }))
-
-removeLoadingScreen()
