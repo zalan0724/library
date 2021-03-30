@@ -2,6 +2,9 @@ html{
     min-width: 292px;
 }
 
+a{
+    color: black;
+}
 *{
     margin: 0px;
     padding: 0px;
@@ -152,5 +155,15 @@ nav{
 
 #subEmptyText{
     font-size: 15pt;
+}
+
+footer{
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    color: solid black;
+    font-size: 11pt;
+    bottom: 3px;
 }
 

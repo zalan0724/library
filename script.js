@@ -1,30 +1,63 @@
-let addButton = document.querySelector('.addButton')
-let content = document.querySelector('.content')
-let navList = document.querySelector('.list')
-let emptyContainer = document.querySelector('.emptyContainer')
-let inputs = document.querySelectorAll('input')
+const addButton = document.querySelector('.addButton')
+const content = document.querySelector('.content')
+const navList = document.querySelector('.list')
+const emptyContainer = document.querySelector('.emptyContainer')
+const inputs = document.querySelectorAll('input')
 
 //Adding new book elements
-let newBookInterface = document.querySelector('.newBookInterface')
-let newBookAdd = document.querySelector('#newBookAdd')
-let newBookCancel = document.querySelector('#newBookCancel')
-let newBookInputs = document.querySelectorAll('.newBookTab input')
-let giveBookName = document.querySelector('#giveBookName')
-let giveBookAuthor = document.querySelector('#giveBookAuthor')
-let giveBookTotal = document.querySelector('#giveBookTotal')
-let giveBookCurrent = document.querySelector('#giveBookCurrent')
+const newBookInterface = document.querySelector('.newBookInterface')
+const newBookAdd = document.querySelector('#newBookAdd')
+const newBookCancel = document.querySelector('#newBookCancel')
+const newBookInputs = document.querySelectorAll('.newBookTab input')
+const giveBookName = document.querySelector('#giveBookName')
+const giveBookAuthor = document.querySelector('#giveBookAuthor')
+const giveBookTotal = document.querySelector('#giveBookTotal')
+const giveBookCurrent = document.querySelector('#giveBookCurrent')
 
 //Editing book elements
-let editBookInterface = document.querySelector('.editBookInterface')
-let editBookSave = document.querySelector('#editBookSave')
-let editBookCancel = document.querySelector('#editBookCancel')
-let editBookInputs = document.querySelectorAll('.editBookTab input')
-let editBookName = document.querySelector('#editBookName')
-let editBookAuthor = document.querySelector('#editBookAuthor')
-let editBookTotal = document.querySelector('#editBookTotal')
-let editBookCurrent = document.querySelector('#editBookCurrent')
+const editBookInterface = document.querySelector('.editBookInterface')
+const editBookSave = document.querySelector('#editBookSave')
+const editBookCancel = document.querySelector('#editBookCancel')
+const editBookRemove = document.querySelector('#editBookRemove')
+const editBookInputs = document.querySelectorAll('.editBookTab input')
+const editBookName = document.querySelector('#editBookName')
+const editBookAuthor = document.querySelector('#editBookAuthor')
+const editBookTotal = document.querySelector('#editBookTotal')
+const editBookCurrent = document.querySelector('#editBookCurrent')
 
 let bookLibrary = []
+
+const getBookCard = function(name, author, currentPage, totalPage, id){
+    const bookTemplate = `
+    <div class="book">
+        <div class="bookTop">
+            <p class="bookTitle">${name}</p>
+            <p class="bookAuthor">by ${author}</p>
+        </div>
+        <div class="bookBottom">
+            <p class="bookPages" id="currentPages">Current: ${currentPage}</p>
+            <p class="bookPages" id="totalPages">Total pages: ${totalPage}</p>
+            <div class="bookBottomButtons">
+                <button class="bookButton" id="editButton" onclick="editBook(${id})">Edit</button>
+                <button class="bookButton" id="minusButton" onclick="reduceCurrent(${id})">-</button>
+                <button class="bookButton" id="plusButton" onclick="addCurrent(${id})">+</button>
+            </div>
+        </div>
+    </div>`
+
+    return bookTemplate
+}
+
+const getListItem = function (name, id){
+    const listTemplate =`
+    <div class="listItem">
+        <div class="listName">${name}</div>
+        <button class="listButton" id="listEditButton" onclick="editBook(${id})">Edit</button>
+        <button class="listButton" id="listRemoveButton" onclick="removeBook(${id})">Remove</button>
+    </div>`
+
+    return listTemplate
+}
 
 const Book = function(name, author, totalPage, currentPage, id) {
     this.name = name
@@ -32,36 +65,6 @@ const Book = function(name, author, totalPage, currentPage, id) {
     this.totalPage = totalPage
     this.currentPage = currentPage
     this.id = id
-
-    this.getBookCard = function(){
-        const bookTemplate = `
-        <div class="book">
-            <div class="bookTop">
-                <p class="bookTitle">${this.name}</p>
-                <p class="bookAuthor">by ${this.author}</p>
-            </div>
-            <div class="bookBottom">
-                <p class="bookPages" id="currentPages">Current: ${this.currentPage}</p>
-                <p class="bookPages" id="totalPages">Total pages: ${this.totalPage}</p>
-                <div class="bookBottomButtons">
-                    <button class="bookButton" id="editButton" onclick="editBook(${this.id})">Edit</button>
-                    <button class="bookButton" id="minusButton" onclick="reduceCurrent(${this.id})">-</button>
-                    <button class="bookButton" id="plusButton" onclick="addCurrent(${this.id})">+</button>
-                </div>
-            </div>
-        </div>`
-
-        return bookTemplate
-    }
-    this.getListItem = function (){
-        const listTemplate =`
-        <div class="listItem">
-            <div class="listName">${this.name}</div>
-            <button class="listButton" id="listEditButton" onclick="editBook(${this.id})">Edit</button>
-            <button class="listButton" id="listRemoveButton" onclick="removeBook(${this.id})">Remove</button>
-        </div>`
-        return listTemplate
-    }
 }
 
 function getNextID(){
@@ -100,7 +103,7 @@ function checkEditInputs(){
 function addCurrent(id){
     if(bookLibrary[id].currentPage<bookLibrary[id].totalPage){
         bookLibrary[id].currentPage++
-        console.log('add')
+        console.log('Increased by one')
         refreshLibrary()
     }
 
@@ -109,6 +112,7 @@ function addCurrent(id){
 function reduceCurrent(id){
     if(bookLibrary[id].currentPage>1){
         bookLibrary[id].currentPage--
+        console.log('Decreased by one')
         refreshLibrary()
     }
 
@@ -120,6 +124,7 @@ function editBook(id){
     editBookTotal.value = bookLibrary[id].totalPage
     editBookCurrent.value = bookLibrary[id].currentPage
     editBookSave.setAttribute('onclick',`saveBook(${id})`)
+    editBookRemove.setAttribute('onclick',`removeBook(${id})`)
     editBookInterface.style.display = 'flex'
 }
 
@@ -129,6 +134,7 @@ function saveBook(id){
         bookLibrary[id].author = editBookAuthor.value
         bookLibrary[id].totalPage = editBookTotal.value
         bookLibrary[id].currentPage = editBookCurrent.value
+        console.log(`Book saved (id: ${id})`)
         refreshLibrary()
         editBookInterface.style.display = 'none'
     }
@@ -149,16 +155,19 @@ function removeBook(id){
         bookLibrary[i].id--
     }
     refreshLibrary()
+    editBookInterface.style.display = 'none'
 }
 
 function refreshLibrary(){
     content.innerHTML=''
     navList.innerHTML=''
     for(let i=0; i<=bookLibrary.length-1; i++){
-        let bookTemplate = document.createElement('div');
-        let listTemplate = document.createElement('div');
-        bookTemplate.innerHTML = bookLibrary[i].getBookCard()
-        listTemplate.innerHTML = bookLibrary[i].getListItem()
+        let bookTemplate = document.createElement('div')
+        let listTemplate = document.createElement('div')
+        bookTemplate.innerHTML = getBookCard(
+            bookLibrary[i].name, bookLibrary[i].author, bookLibrary[i].currentPage, bookLibrary[i].totalPage, bookLibrary[i].id)
+        listTemplate.innerHTML = getListItem(
+            bookLibrary[i].name, bookLibrary[i].id)
         content.appendChild(bookTemplate)
         navList.appendChild(listTemplate)
     }
@@ -168,12 +177,14 @@ function refreshLibrary(){
     else if(bookLibrary!=0){
         emptyContainer.style.display = 'none'
     }
+    saveData()
 }
 
 function addBookToLibrary(){
     if(checkAddInputs()===127){
         let newBook = new Book(giveBookName.value, giveBookAuthor.value, giveBookTotal.value, giveBookCurrent.value, getNextID())
         bookLibrary.push(newBook)
+        console.log('New book added')
         refreshLibrary()
         newBookInterface.style.display = 'none'
     }
@@ -187,6 +198,24 @@ function addBookToLibrary(){
         || parseInt(giveBookCurrent.value<=0)) giveBookCurrent.style.backgroundColor = 'rgb(177, 83, 83)'
     }
 }
+
+function saveData(){
+    localStorage['bookLibrary'] = JSON.stringify(bookLibrary)
+}
+
+function restoreData(){
+    bookLibrary = JSON.parse(localStorage.getItem('bookLibrary'))
+}
+
+(function prepareLocalLibrary(){
+    if(localStorage.getItem('bookLibrary')==null){
+        localStorage.setItem('bookLibrary', JSON.stringify(bookLibrary))
+    }
+    else{
+        restoreData()
+        refreshLibrary()
+    }
+})()
 
 //EventListeners
 addButton.addEventListener('click',()=>{
@@ -223,4 +252,5 @@ newBookInputs.forEach(element => element.addEventListener('input', ()=>{
 editBookInputs.forEach(element => element.addEventListener('input', ()=>{
     element.style.backgroundColor = 'white'
 }))
+
 
