@@ -3,6 +3,7 @@ const content = document.querySelector('.content')
 const navList = document.querySelector('.list')
 const emptyContainer = document.querySelector('.emptyContainer')
 const inputs = document.querySelectorAll('input')
+const loadingScreen = document.querySelector('#loadingScreen')
 
 //Adding new book elements
 const newBookInterface = document.querySelector('.newBookInterface')
@@ -216,6 +217,10 @@ function restoreData(){
         refreshLibrary()
     }
 })()
+
+function removeLoadingScreen(){
+    loadingScreen.style.display = 'none'
+}
 
 //EventListeners
 addButton.addEventListener('click',()=>{
