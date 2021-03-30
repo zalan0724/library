@@ -123,7 +123,7 @@ nav{
     background-color: #1A1A1A;
     bottom: 15px;
     right: 315px;
-
+    z-index: 3;
     transition-duration: 0.2s;
 }
 
@@ -165,5 +165,6 @@ footer{
     color: solid black;
     font-size: 11pt;
     bottom: 3px;
+    z-index: 1;
 }
 
