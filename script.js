@@ -2,6 +2,7 @@ let addButton = document.querySelector('.addButton')
 let content = document.querySelector('.content')
 let navList = document.querySelector('.list')
 let emptyContainer = document.querySelector('.emptyContainer')
+let inputs = document.querySelectorAll('input')
 
 //Adding new book elements
 let newBookInterface = document.querySelector('.newBookInterface')
@@ -25,17 +26,15 @@ let editBookCurrent = document.querySelector('#editBookCurrent')
 
 let bookLibrary = []
 
-class Book{
-    constructor(name, author, totalPage, currentPage, id){
-        this.name = name
-        this.author = author
-        this.totalPage = totalPage
-        this.currentPage = currentPage
-        this.id = id
-    }
+const Book = function(name, author, totalPage, currentPage, id) {
+    this.name = name
+    this.author = author
+    this.totalPage = totalPage
+    this.currentPage = currentPage
+    this.id = id
 
-    get bookCard(){
-        const bookTemplate =`
+    this.getBookCard = function(){
+        const bookTemplate = `
         <div class="book">
             <div class="bookTop">
                 <p class="bookTitle">${this.name}</p>
@@ -51,11 +50,11 @@ class Book{
                 </div>
             </div>
         </div>`
+
         return bookTemplate
     }
-
-    get listItem(){
-        const listTemplate = `
+    this.getListItem = function (){
+        const listTemplate =`
         <div class="listItem">
             <div class="listName">${this.name}</div>
             <button class="listButton" id="listEditButton" onclick="editBook(${this.id})">Edit</button>
@@ -71,26 +70,37 @@ function getNextID(){
 }
 
 function checkAddInputs(){
-    let result = 0
-    if(giveBookAuthor.value!='') result++
-    if(giveBookName.value!='') result++
-    if(giveBookCurrent.value!='' && giveBookCurrent.value<=giveBookTotal.value && giveBookCurrent.value>0) result++
-    if(giveBookTotal.value!='' && giveBookTotal.value>0) result++
-    return result
+    bookValidationNumber = 0;
+
+    if(giveBookAuthor.value!='') bookValidationNumber+=1;
+    if(giveBookName.value!='') bookValidationNumber+=2;
+    if(giveBookCurrent.value!='') bookValidationNumber+=4;
+    if(parseInt(giveBookCurrent.value)<=parseInt(giveBookTotal.value)) bookValidationNumber+=8;
+    if(parseInt(giveBookCurrent.value)>0) bookValidationNumber+=16;
+    if(giveBookTotal.value!='') bookValidationNumber+=32;
+    if(parseInt(giveBookTotal.value)>0) bookValidationNumber+=64;
+
+    return bookValidationNumber;
 }
 
 function checkEditInputs(){
-    let result = 0
-    if(editBookAuthor.value!='') result++
-    if(editBookName.value!='') result++
-    if(editBookCurrent.value!='' && editBookCurrent.value<=editBookTotal.value && editBookCurrent.value>0) result++
-    if(editBookTotal.value!='' && editBookTotal.value>0) result++
-    return result
+    bookValidationNumber = 0;
+
+    if(editBookAuthor.value!='') bookValidationNumber+=1;
+    if(editBookName.value!='') bookValidationNumber+=2;
+    if(editBookCurrent.value!='') bookValidationNumber+=4;
+    if(parseInt(editBookCurrent.value)<=parseInt(editBookTotal.value)) bookValidationNumber+=8;
+    if(parseInt(editBookCurrent.value)>0) bookValidationNumber+=16;
+    if(editBookTotal.value!='') bookValidationNumber+=32;
+    if(parseInt(editBookTotal.value)>0) bookValidationNumber+=64;
+
+    return bookValidationNumber;
 }
 
 function addCurrent(id){
     if(bookLibrary[id].currentPage<bookLibrary[id].totalPage){
         bookLibrary[id].currentPage++
+        console.log('add')
         refreshLibrary()
     }
 
@@ -114,7 +124,7 @@ function editBook(id){
 }
 
 function saveBook(id){
-    if(checkEditInputs()==4){
+    if(checkEditInputs()===127){
         bookLibrary[id].name = editBookName.value
         bookLibrary[id].author = editBookAuthor.value
         bookLibrary[id].totalPage = editBookTotal.value
@@ -123,10 +133,13 @@ function saveBook(id){
         editBookInterface.style.display = 'none'
     }
     else{
-        if(editBookAuthor.value=='') editBookAuthor.style.backgroundColor = 'rgb(177, 83, 83)'
-        if(editBookName.value=='') editBookName.style.backgroundColor = 'rgb(177, 83, 83)'
-        if(editBookTotal.value=='' || editBookTotal.value<=0) editBookTotal.style.backgroundColor = 'rgb(177, 83, 83)'
-        if(editBookCurrent.value=='' || editBookCurrent.value>editBookTotal.value || editBookCurrent.value <= 0) editBookCurrent.style.backgroundColor = 'rgb(177, 83, 83)'
+        if(editBookAuthor.value==='') editBookAuthor.style.backgroundColor = 'rgb(177, 83, 83)'
+        if(editBookName.value==='') editBookName.style.backgroundColor = 'rgb(177, 83, 83)'
+        if(editBookTotal.value==='' 
+        || parseInt(editBookTotal.value)<=0) editBookTotal.style.backgroundColor = 'rgb(177, 83, 83)'
+        if(editBookCurrent.value==='' 
+        || parseInt(editBookCurrent.value)>parseInt(editBookTotal.value) 
+        || parseInt(editBookCurrent.value) <= 0) editBookCurrent.style.backgroundColor = 'rgb(177, 83, 83)'
     }
 }
 
@@ -144,12 +157,12 @@ function refreshLibrary(){
     for(let i=0; i<=bookLibrary.length-1; i++){
         let bookTemplate = document.createElement('div');
         let listTemplate = document.createElement('div');
-        bookTemplate.innerHTML = bookLibrary[i].bookCard
-        listTemplate.innerHTML = bookLibrary[i].listItem
+        bookTemplate.innerHTML = bookLibrary[i].getBookCard()
+        listTemplate.innerHTML = bookLibrary[i].getListItem()
         content.appendChild(bookTemplate)
         navList.appendChild(listTemplate)
     }
-    if(bookLibrary.length==0){
+    if(bookLibrary.length===0){
         emptyContainer.style.display = 'flex'
     }
     else if(bookLibrary!=0){
@@ -158,17 +171,20 @@ function refreshLibrary(){
 }
 
 function addBookToLibrary(){
-    if(checkAddInputs()==4){
+    if(checkAddInputs()===127){
         let newBook = new Book(giveBookName.value, giveBookAuthor.value, giveBookTotal.value, giveBookCurrent.value, getNextID())
         bookLibrary.push(newBook)
         refreshLibrary()
         newBookInterface.style.display = 'none'
     }
     else{
-        if(giveBookAuthor.value=='') giveBookAuthor.style.backgroundColor = 'rgb(177, 83, 83)'
-        if(giveBookName.value=='') giveBookName.style.backgroundColor = 'rgb(177, 83, 83)'
-        if(giveBookTotal.value=='' || giveBookTotal.value<=0) giveBookTotal.style.backgroundColor = 'rgb(177, 83, 83)'
-        if(giveBookCurrent.value=='' || giveBookCurrent.value>giveBookTotal.value || giveBookCurrent.value<=0) giveBookCurrent.style.backgroundColor = 'rgb(177, 83, 83)'
+        if(giveBookAuthor.value==='') giveBookAuthor.style.backgroundColor = 'rgb(177, 83, 83)'
+        if(giveBookName.value==='') giveBookName.style.backgroundColor = 'rgb(177, 83, 83)'
+        if(giveBookTotal.value==='' 
+        || parseInt(giveBookTotal.value)<=0) giveBookTotal.style.backgroundColor = 'rgb(177, 83, 83)'
+        if(giveBookCurrent.value==='' 
+        || parseInt(giveBookCurrent.value)>parseInt(giveBookTotal.value) 
+        || parseInt(giveBookCurrent.value<=0)) giveBookCurrent.style.backgroundColor = 'rgb(177, 83, 83)'
     }
 }
 
@@ -179,6 +195,7 @@ addButton.addEventListener('click',()=>{
     giveBookAuthor.value = ''
     giveBookTotal.value = ''
     giveBookCurrent.value = ''
+    newBookInputs.forEach(element => element.style.backgroundColor = 'white')
 })
 
 newBookCancel.addEventListener('click', ()=>{
@@ -196,6 +213,7 @@ editBookCancel.addEventListener('click', ()=>{
     editBookTotal.value = ''
     editBookCurrent.value = ''
     editBookInterface.style.display = 'none'
+    editBookInputs.forEach(element => element.style.backgroundColor = 'white')
 })
 
 newBookInputs.forEach(element => element.addEventListener('input', ()=>{
