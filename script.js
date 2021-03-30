@@ -260,4 +260,3 @@ editBookInputs.forEach(element => element.addEventListener('input', ()=>{
 }))
 
 removeLoadingScreen()
-
