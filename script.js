@@ -258,4 +258,5 @@ editBookInputs.forEach(element => element.addEventListener('input', ()=>{
     element.style.backgroundColor = 'white'
 }))
 
+removeLoadingScreen()
 
