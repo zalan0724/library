@@ -46,12 +46,14 @@ nav{
 }
 
 .listItem{
-    display: inline-block;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
     box-sizing: border-box;
     background-color: white;
     color: black;
     font-size: 19px;
-    width: 300px;
+    width: 290px;
     min-height: 40px;
     padding: 10px;
     border-radius: 8px;
@@ -75,11 +77,12 @@ nav{
     display: inline-block;
     position: relative;
     top:2px;
-    width: 175px;
+    width: 160px;
 }
 
 #listRemoveButton{
     background-color: rgb(177, 83, 83);
+    margin-right: 10px;
 }
 
 #listRemoveButton:hover{
@@ -128,6 +131,31 @@ nav{
 }
 
 .addButton:hover{
+    transform: scale(1.2);
+}
+
+.menuButton{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    background-color: rgba(0,0,0,0);
+    width: 50px;
+    height: 50px;
+    right: 15px;
+    bottom: 80px;
+    background-color: #1A1A1A;
+    border-radius: 25px;
+    transition-duration: 0.2s;
+    z-index: 13;
+    outline: none;
+}
+
+.menuButton img{
+    width: 35px;
+}
+
+.menuButton:hover{
     transform: scale(1.2);
 }
 

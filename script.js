@@ -1,4 +1,7 @@
+const nav = document.querySelector('nav')
 const addButton = document.querySelector('.addButton')
+const menuButton = document.querySelector('.menuButton')
+const menuImage = document.querySelector('.menuButton img')
 const content = document.querySelector('.content')
 const navList = document.querySelector('.list')
 const emptyContainer = document.querySelector('.emptyContainer')
@@ -53,8 +56,10 @@ const getListItem = function (name, id){
     const listTemplate =`
     <div class="listItem">
         <div class="listName">${name}</div>
-        <button class="listButton" id="listEditButton" onclick="editBook(${id})">Edit</button>
-        <button class="listButton" id="listRemoveButton" onclick="removeBook(${id})">Remove</button>
+        <div>
+            <button class="listButton" id="listEditButton" onclick="editBook(${id})">Edit</button>
+            <button class="listButton" id="listRemoveButton" onclick="removeBook(${id})">Remove</button>
+        </div>
     </div>`
 
     return listTemplate
@@ -218,12 +223,27 @@ function restoreData(){
     }
 })()
 
+function showMenu(){
+    nav.style.display= 'inline-block'
+    menuButton.setAttribute('onclick', 'hideMenu()')
+    menuImage.setAttribute('src', 'cross.svg')
+    menuButton.style.backgroundColor = 'white'
+    menuButton.style.bottom = '15px'
+}
+
+function hideMenu(){
+    nav.style.display= 'none'
+    menuButton.setAttribute('onclick', 'showMenu()')
+    menuImage.setAttribute('src', 'menu.svg')
+    menuButton.style.backgroundColor = '#1A1A1A'
+    menuButton.style.bottom = '80px'
+}
+
 function removeLoadingScreen(){
     loadingScreen.style.display = 'none'
     console.log('Loading screen removed')
 }
 
-removeLoadingScreen()
 //EventListeners
 addButton.addEventListener('click',()=>{
     newBookInterface.style.display = 'flex'
@@ -259,3 +279,5 @@ newBookInputs.forEach(element => element.addEventListener('input', ()=>{
 editBookInputs.forEach(element => element.addEventListener('input', ()=>{
     element.style.backgroundColor = 'white'
 }))
+
+removeLoadingScreen()

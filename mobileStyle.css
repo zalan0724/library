@@ -1,8 +1,32 @@
 
 @media (max-width: 839px) {
     nav {
+      position: fixed;
       display: none;
+      width: 100%;
+      height: 100%;
+      z-index: 12;
+      left:0px;
+      padding-right: 20px;
     }
+
+    .listItem{
+        width: 100%;
+        min-width: 303px;
+        min-height: 60px;
+    }
+
+    .listButton{
+        height: 40px;
+        font-weight: bold;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #listRemoveButton{
+        margin-right: 0px;
+    }
+
     .contentBox{
         padding-right: 30px;
     }
@@ -42,4 +66,10 @@
     .emptyContainer{
         padding-right: 20px;
     }
+
+    .menuButton{
+        display: flex;
+    }
+
+
 }
