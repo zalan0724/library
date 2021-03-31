@@ -1,3 +1,4 @@
+const html = document.querySelector('html')
 const nav = document.querySelector('nav')
 const addButton = document.querySelector('.addButton')
 const menuButton = document.querySelector('.menuButton')
@@ -33,7 +34,7 @@ let bookLibrary = []
 
 const getBookCard = function(name, author, currentPage, totalPage, id){
     const bookTemplate = `
-    <div class="book">
+    <div class="book" id="${id}">
         <div class="bookTop">
             <p class="bookTitle">${name}</p>
             <p class="bookAuthor">by ${author}</p>
@@ -55,10 +56,11 @@ const getBookCard = function(name, author, currentPage, totalPage, id){
 const getListItem = function (name, id){
     const listTemplate =`
     <div class="listItem">
-        <div class="listName">${name}</div>
+        <a href="#${id}" onclick="hideMenu()">
+            <div class="listName">${name}</div></a>
         <div>
-            <button class="listButton" id="listEditButton" onclick="editBook(${id})">Edit</button>
-            <button class="listButton" id="listRemoveButton" onclick="removeBook(${id})">Remove</button>
+            <button class="listButton" id="listEditButton" onclick="editBook(${id});hideMenu()">Edit</button>
+            <button class="listButton" id="listRemoveButton" onclick="removeBook(${id});hideMenu()">Remove</button>
         </div>
     </div>`
 
@@ -71,6 +73,16 @@ const Book = function(name, author, totalPage, currentPage, id) {
     this.totalPage = totalPage
     this.currentPage = currentPage
     this.id = id
+}
+
+function getWidth() {
+    return Math.max(
+      document.body.scrollWidth,
+      document.documentElement.scrollWidth,
+      document.body.offsetWidth,
+      document.documentElement.offsetWidth,
+      document.documentElement.clientWidth
+    )
 }
 
 function getNextID(){
@@ -224,19 +236,23 @@ function restoreData(){
 })()
 
 function showMenu(){
-    nav.style.display= 'inline-block'
-    menuButton.setAttribute('onclick', 'hideMenu()')
-    menuImage.setAttribute('src', 'cross.svg')
-    menuButton.style.backgroundColor = 'white'
-    menuButton.style.bottom = '15px'
+    if(getWidth()<839){
+        nav.style.display= 'inline-block'
+        menuButton.setAttribute('onclick', 'hideMenu()')
+        menuImage.setAttribute('src', 'cross.svg')
+        menuButton.style.backgroundColor = 'white'
+        menuButton.style.bottom = '15px'
+    }
 }
 
 function hideMenu(){
-    nav.style.display= 'none'
-    menuButton.setAttribute('onclick', 'showMenu()')
-    menuImage.setAttribute('src', 'menu.svg')
-    menuButton.style.backgroundColor = '#1A1A1A'
-    menuButton.style.bottom = '80px'
+    if(getWidth()<839){
+        nav.style.display= 'none'
+        menuButton.setAttribute('onclick', 'showMenu()')
+        menuImage.setAttribute('src', 'menu.svg')
+        menuButton.style.backgroundColor = '#1A1A1A'
+        menuButton.style.bottom = '80px'
+    }
 }
 
 function removeLoadingScreen(){
