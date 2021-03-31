@@ -1,6 +1,6 @@
 .newBookInterface{
     box-sizing: border-box;
-    z-index: 11;
+    z-index: 14;
     position: fixed;
     top: 0px;
     display: none;
@@ -13,6 +13,7 @@
 }
 
 .newBookTab{
+    z-index: 15;
     position: relative;
     background-color: white;
     width: 700px;
