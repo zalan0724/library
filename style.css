@@ -16,6 +16,9 @@ a{
 body{
     background-image: url("background1.jpg");
     background-size: cover;
+    overflow: auto;
+    height: 100%;
+    width: 100%;
 }
 
 nav{
