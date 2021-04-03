@@ -157,11 +157,7 @@ nav{
 }
 
 .menuButton img{
-    width: 35px;
-}
-
-.menuButton:hover{
-    transform: scale(1.2);
+    width: 32px;
 }
 
 .emptyContainer{
