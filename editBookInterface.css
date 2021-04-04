@@ -15,7 +15,7 @@
     z-index: 15;
     display: inline-block;
     position: relative;
-    background-color: white;
+    background-color: #1A1A1A;
     width: 700px;
     height: 400px;
     border-radius: 20px;
@@ -33,7 +33,7 @@
     display: inline-block;
     padding: 6px;
     border-radius: 5px;
-    background-color: #1A1A1A;
+    background-color: rgb(49, 49, 49);
 }
 .editDetail input{
     border-bottom: 3px solid #1A1A1A;
@@ -47,6 +47,7 @@
     padding: 6px;
     border-radius: 5px;
     outline: none;
+    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.651);
 }
 
 #editBookCancel{

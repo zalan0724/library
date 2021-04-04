@@ -1,13 +1,16 @@
-html{
+html {
     min-width: 292px;
     scroll-behavior: smooth;
+    background-image: url("background1.jpg");
+    background-size: cover;
 }
 
-a{
+a {
     color: black;
     text-decoration: none;
 }
-*{
+
+* {
     margin: 0px;
     padding: 0px;
     border: 0px;
@@ -15,15 +18,12 @@ a{
     font-family: 'Fjalla One', sans-serif;
 }
 
-body{
-    background-image: url("background1.jpg");
-    background-size: cover;
-    overflow: auto;
+body {
     height: 100%;
     width: 100%;
 }
 
-nav{
+nav {
     display: inline-block;
     position: fixed;
     right: 0px;
@@ -37,26 +37,26 @@ nav{
     filter: drop-shadow(-2px 0px 4px rgb(27, 27, 27));
 }
 
-.title{
+.title {
     font-size: 52pt;
     border-bottom: 2px solid white;
     user-select: none;
 }
 
-.list{
+.list {
     border: 0px solid white;
     display: inline-block;
     height: 80%;
     width: 100%;
 }
 
-.listItem{
+.listItem {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     box-sizing: border-box;
-    background-color: white;
-    color: black;
+    background-color: rgb(49, 49, 49);
+    color: white;
     font-size: 19px;
     width: 290px;
     min-height: 40px;
@@ -64,10 +64,10 @@ nav{
     border-radius: 8px;
     margin-top: 20px;
     user-select: none;
-
+    filter: drop-shadow(7px 7px 12px black);
 }
 
-.listButton{
+.listButton {
     position: relative;
     right: 0px;
     top: 0px;
@@ -76,39 +76,43 @@ nav{
     border-radius: 5px;
     outline: none;
     transition-duration: 0.2s;
+    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.651);
+    cursor: pointer;
 }
 
-.listName{
+.listName {
     display: inline-block;
     position: relative;
-    top:2px;
+    top: 2px;
     width: 160px;
+    color: white;
 }
 
-#listRemoveButton{
+#listRemoveButton {
     background-color: rgb(177, 83, 83);
     margin-right: 10px;
 }
 
-#listRemoveButton:hover{
+#listRemoveButton:hover {
     background-color: rgb(119, 56, 56);
 }
 
-#listEditButton{
+#listEditButton {
     background-color: rgb(76, 76, 153);
 }
 
-#listEditButton:hover{
+#listEditButton:hover {
     background-color: rgb(56, 56, 112);
 }
 
-.contentBox{
+.contentBox {
     width: 100%;
     height: 100%;
     padding: 30px;
     padding-right: 330px;
 }
-.content{
+
+.content {
     align-items: flex-end;
     justify-content: flex-start;
     border: 0px solid white;
@@ -118,7 +122,7 @@ nav{
     height: 100%;
 }
 
-.addButton{
+.addButton {
     position: fixed;
     display: inline-block;
     height: 50px;
@@ -133,18 +137,20 @@ nav{
     right: 315px;
     z-index: 3;
     transition-duration: 0.2s;
+    filter: drop-shadow(3px 3px 5px rgba(0, 0, 0, 0.671));
+    cursor: pointer;
 }
 
-.addButton:hover{
+.addButton:hover {
     transform: scale(1.2);
 }
 
-.menuButton{
+.menuButton {
     display: none;
     align-items: center;
     justify-content: center;
     position: fixed;
-    background-color: rgba(0,0,0,0);
+    background-color: rgba(0, 0, 0, 0);
     width: 50px;
     height: 50px;
     right: 15px;
@@ -156,11 +162,11 @@ nav{
     outline: none;
 }
 
-.menuButton img{
+.menuButton img {
     width: 32px;
 }
 
-.emptyContainer{
+.emptyContainer {
     position: sticky;
     display: flex;
     width: 100%;
@@ -171,19 +177,79 @@ nav{
     color: white;
 }
 
-.emptyTextContainer{
+.emptyTextContainer {
     margin-left: 50px;
     padding-left: 10px;
     border-left: 2px solid white;
 }
 
-#mainEmptyText{
-    font-size:30pt;
+#mainEmptyText {
+    font-size: 30pt;
     margin-bottom: 20px;
 }
 
-#subEmptyText{
+#subEmptyText {
     font-size: 15pt;
 }
 
+.switch {
+    position: absolute;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    bottom: 15px;
+    right: 20px;
+}
 
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(49, 49, 49);
+    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.651);
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:focus+.slider {
+    /*box-shadow: 0 0 1px #2196F3;*/
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}

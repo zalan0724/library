@@ -9,6 +9,8 @@ const emptyContainer = document.querySelector('.emptyContainer')
 const inputs = document.querySelectorAll('input')
 const loadingScreen = document.querySelector('#loadingScreen')
 
+let visualMode = 'dark';
+
 //Adding new book elements
 const newBookInterface = document.querySelector('.newBookInterface')
 const newBookAdd = document.querySelector('#newBookAdd')
@@ -32,7 +34,7 @@ const editBookCurrent = document.querySelector('#editBookCurrent')
 
 let bookLibrary = []
 
-const getBookCard = function(name, author, currentPage, totalPage, id){
+const getBookCard = function(name, author, currentPage, totalPage, id) {
     const bookTemplate = `
     <div class="book" id="${id}">
         <div class="bookTop">
@@ -53,8 +55,8 @@ const getBookCard = function(name, author, currentPage, totalPage, id){
     return bookTemplate
 }
 
-const getListItem = function (name, id){
-    const listTemplate =`
+const getListItem = function(name, id) {
+    const listTemplate = `
     <div class="listItem">
         <a href="#${id}" onclick="hideMenu()">
             <div class="listName">${name}</div></a>
@@ -77,77 +79,77 @@ const Book = function(name, author, totalPage, currentPage, id) {
 
 function getWidth() {
     return Math.max(
-      document.body.scrollWidth,
-      document.documentElement.scrollWidth,
-      document.body.offsetWidth,
-      document.documentElement.offsetWidth,
-      document.documentElement.clientWidth
+        document.body.scrollWidth,
+        document.documentElement.scrollWidth,
+        document.body.offsetWidth,
+        document.documentElement.offsetWidth,
+        document.documentElement.clientWidth
     )
 }
 
-function getNextID(){
+function getNextID() {
     let id = bookLibrary.length
     return id
 }
 
-function checkAddInputs(){
+function checkAddInputs() {
     bookValidationNumber = 0;
 
-    if(giveBookAuthor.value!='') bookValidationNumber+=1;
-    if(giveBookName.value!='') bookValidationNumber+=2;
-    if(giveBookCurrent.value!='') bookValidationNumber+=4;
-    if(parseInt(giveBookCurrent.value)<=parseInt(giveBookTotal.value)) bookValidationNumber+=8;
-    if(parseInt(giveBookCurrent.value)>0) bookValidationNumber+=16;
-    if(giveBookTotal.value!='') bookValidationNumber+=32;
-    if(parseInt(giveBookTotal.value)>0) bookValidationNumber+=64;
+    if (giveBookAuthor.value != '') bookValidationNumber += 1;
+    if (giveBookName.value != '') bookValidationNumber += 2;
+    if (giveBookCurrent.value != '') bookValidationNumber += 4;
+    if (parseInt(giveBookCurrent.value) <= parseInt(giveBookTotal.value)) bookValidationNumber += 8;
+    if (parseInt(giveBookCurrent.value) > 0) bookValidationNumber += 16;
+    if (giveBookTotal.value != '') bookValidationNumber += 32;
+    if (parseInt(giveBookTotal.value) > 0) bookValidationNumber += 64;
 
     return bookValidationNumber;
 }
 
-function checkEditInputs(){
+function checkEditInputs() {
     bookValidationNumber = 0;
 
-    if(editBookAuthor.value!='') bookValidationNumber+=1;
-    if(editBookName.value!='') bookValidationNumber+=2;
-    if(editBookCurrent.value!='') bookValidationNumber+=4;
-    if(parseInt(editBookCurrent.value)<=parseInt(editBookTotal.value)) bookValidationNumber+=8;
-    if(parseInt(editBookCurrent.value)>0) bookValidationNumber+=16;
-    if(editBookTotal.value!='') bookValidationNumber+=32;
-    if(parseInt(editBookTotal.value)>0) bookValidationNumber+=64;
+    if (editBookAuthor.value != '') bookValidationNumber += 1;
+    if (editBookName.value != '') bookValidationNumber += 2;
+    if (editBookCurrent.value != '') bookValidationNumber += 4;
+    if (parseInt(editBookCurrent.value) <= parseInt(editBookTotal.value)) bookValidationNumber += 8;
+    if (parseInt(editBookCurrent.value) > 0) bookValidationNumber += 16;
+    if (editBookTotal.value != '') bookValidationNumber += 32;
+    if (parseInt(editBookTotal.value) > 0) bookValidationNumber += 64;
 
     return bookValidationNumber;
 }
 
-function addCurrent(id){
-    if(bookLibrary[id].currentPage<bookLibrary[id].totalPage){
+function addCurrent(id) {
+    if (bookLibrary[id].currentPage < bookLibrary[id].totalPage) {
         bookLibrary[id].currentPage++
-        console.log('Increased by one')
+            console.log('Increased by one')
         refreshLibrary()
     }
 
 }
 
-function reduceCurrent(id){
-    if(bookLibrary[id].currentPage>1){
+function reduceCurrent(id) {
+    if (bookLibrary[id].currentPage > 1) {
         bookLibrary[id].currentPage--
-        console.log('Decreased by one')
+            console.log('Decreased by one')
         refreshLibrary()
     }
 
 }
 
-function editBook(id){
+function editBook(id) {
     editBookName.value = bookLibrary[id].name
     editBookAuthor.value = bookLibrary[id].author
     editBookTotal.value = bookLibrary[id].totalPage
     editBookCurrent.value = bookLibrary[id].currentPage
-    editBookSave.setAttribute('onclick',`saveBook(${id})`)
-    editBookRemove.setAttribute('onclick',`removeBook(${id})`)
+    editBookSave.setAttribute('onclick', `saveBook(${id})`)
+    editBookRemove.setAttribute('onclick', `removeBook(${id})`)
     editBookInterface.style.display = 'flex'
 }
 
-function saveBook(id){
-    if(checkEditInputs()===127){
+function saveBook(id) {
+    if (checkEditInputs() === 127) {
         bookLibrary[id].name = editBookName.value
         bookLibrary[id].author = editBookAuthor.value
         bookLibrary[id].totalPage = editBookTotal.value
@@ -155,31 +157,30 @@ function saveBook(id){
         console.log(`Book saved (id: ${id})`)
         refreshLibrary()
         editBookInterface.style.display = 'none'
-    }
-    else{
-        if(editBookAuthor.value==='') editBookAuthor.style.backgroundColor = 'rgb(177, 83, 83)'
-        if(editBookName.value==='') editBookName.style.backgroundColor = 'rgb(177, 83, 83)'
-        if(editBookTotal.value==='' 
-        || parseInt(editBookTotal.value)<=0) editBookTotal.style.backgroundColor = 'rgb(177, 83, 83)'
-        if(editBookCurrent.value==='' 
-        || parseInt(editBookCurrent.value)>parseInt(editBookTotal.value) 
-        || parseInt(editBookCurrent.value) <= 0) editBookCurrent.style.backgroundColor = 'rgb(177, 83, 83)'
+    } else {
+        if (editBookAuthor.value === '') editBookAuthor.style.backgroundColor = 'rgb(177, 83, 83)'
+        if (editBookName.value === '') editBookName.style.backgroundColor = 'rgb(177, 83, 83)'
+        if (editBookTotal.value === '' ||
+            parseInt(editBookTotal.value) <= 0) editBookTotal.style.backgroundColor = 'rgb(177, 83, 83)'
+        if (editBookCurrent.value === '' ||
+            parseInt(editBookCurrent.value) > parseInt(editBookTotal.value) ||
+            parseInt(editBookCurrent.value) <= 0) editBookCurrent.style.backgroundColor = 'rgb(177, 83, 83)'
     }
 }
 
-function removeBook(id){
+function removeBook(id) {
     bookLibrary.splice(id, 1)
-    for(let i=id; i<bookLibrary.length; i++){
+    for (let i = id; i < bookLibrary.length; i++) {
         bookLibrary[i].id--
     }
     refreshLibrary()
     editBookInterface.style.display = 'none'
 }
 
-function refreshLibrary(){
-    content.innerHTML=''
-    navList.innerHTML=''
-    for(let i=0; i<=bookLibrary.length-1; i++){
+function refreshLibrary() {
+    content.innerHTML = ''
+    navList.innerHTML = ''
+    for (let i = 0; i <= bookLibrary.length - 1; i++) {
         let bookTemplate = document.createElement('div')
         let listTemplate = document.createElement('div')
         bookTemplate.innerHTML = getBookCard(
@@ -189,55 +190,55 @@ function refreshLibrary(){
         content.appendChild(bookTemplate)
         navList.appendChild(listTemplate)
     }
-    if(bookLibrary.length===0){
+    if (bookLibrary.length === 0) {
         emptyContainer.style.display = 'flex'
-    }
-    else if(bookLibrary!=0){
+    } else if (bookLibrary != 0) {
         emptyContainer.style.display = 'none'
     }
     saveData()
 }
 
-function addBookToLibrary(){
-    if(checkAddInputs()===127){
+function addBookToLibrary() {
+    if (checkAddInputs() === 127) {
         let newBook = new Book(giveBookName.value, giveBookAuthor.value, giveBookTotal.value, giveBookCurrent.value, getNextID())
         bookLibrary.push(newBook)
         console.log('New book added')
         refreshLibrary()
         newBookInterface.style.display = 'none'
-    }
-    else{
-        if(giveBookAuthor.value==='') giveBookAuthor.style.backgroundColor = 'rgb(177, 83, 83)'
-        if(giveBookName.value==='') giveBookName.style.backgroundColor = 'rgb(177, 83, 83)'
-        if(giveBookTotal.value==='' 
-        || parseInt(giveBookTotal.value)<=0) giveBookTotal.style.backgroundColor = 'rgb(177, 83, 83)'
-        if(giveBookCurrent.value==='' 
-        || parseInt(giveBookCurrent.value)>parseInt(giveBookTotal.value) 
-        || parseInt(giveBookCurrent.value<=0)) giveBookCurrent.style.backgroundColor = 'rgb(177, 83, 83)'
+    } else {
+        if (giveBookAuthor.value === '') giveBookAuthor.style.backgroundColor = 'rgb(177, 83, 83)'
+        if (giveBookName.value === '') giveBookName.style.backgroundColor = 'rgb(177, 83, 83)'
+        if (giveBookTotal.value === '' ||
+            parseInt(giveBookTotal.value) <= 0) giveBookTotal.style.backgroundColor = 'rgb(177, 83, 83)'
+        if (giveBookCurrent.value === '' ||
+            parseInt(giveBookCurrent.value) > parseInt(giveBookTotal.value) ||
+            parseInt(giveBookCurrent.value <= 0)) giveBookCurrent.style.backgroundColor = 'rgb(177, 83, 83)'
     }
 }
 
-function saveData(){
+function saveData() {
     localStorage['bookLibrary'] = JSON.stringify(bookLibrary)
+    localStorage['visualMode'] = JSON.stringify(visualMode)
 }
 
-function restoreData(){
+function restoreData() {
     bookLibrary = JSON.parse(localStorage.getItem('bookLibrary'))
+    visualMode = JSON.parse(localStorage.getItem('visualMode'))
 }
 
-(function prepareLocalLibrary(){
-    if(localStorage.getItem('bookLibrary')==null){
+(function prepareLocalLibrary() {
+    if (localStorage.getItem('bookLibrary') == null) {
         localStorage.setItem('bookLibrary', JSON.stringify(bookLibrary))
-    }
-    else{
+        localStorage.setItem('visualMode', JSON.stringify(visualMode))
+    } else {
         restoreData()
         refreshLibrary()
     }
 })()
 
-function showMenu(){
-    if(getWidth()<839){
-        nav.style.display= 'inline-block'
+function showMenu() {
+    if (getWidth() < 839) {
+        nav.style.display = 'inline-block'
         menuButton.setAttribute('onclick', 'hideMenu()')
         menuImage.setAttribute('src', 'cross.svg')
         menuButton.style.backgroundColor = 'white'
@@ -245,9 +246,9 @@ function showMenu(){
     }
 }
 
-function hideMenu(){
-    if(getWidth()<839){
-        nav.style.display= 'none'
+function hideMenu() {
+    if (getWidth() < 839) {
+        nav.style.display = 'none'
         menuButton.setAttribute('onclick', 'showMenu()')
         menuImage.setAttribute('src', 'menu.svg')
         menuButton.style.backgroundColor = '#1A1A1A'
@@ -255,13 +256,12 @@ function hideMenu(){
     }
 }
 
-function removeLoadingScreen(){
-    loadingScreen.style.display = 'none'
-    console.log('Loading screen removed')
+function toggleDark() {
+
 }
 
 //EventListeners
-addButton.addEventListener('click',()=>{
+addButton.addEventListener('click', () => {
     newBookInterface.style.display = 'flex'
     giveBookName.value = ''
     giveBookAuthor.value = ''
@@ -270,16 +270,16 @@ addButton.addEventListener('click',()=>{
     newBookInputs.forEach(element => element.style.backgroundColor = 'white')
 })
 
-newBookCancel.addEventListener('click', ()=>{
+newBookCancel.addEventListener('click', () => {
     newBookInterface.style.display = 'none'
 
 })
 
-newBookAdd.addEventListener('click', ()=>{
+newBookAdd.addEventListener('click', () => {
     addBookToLibrary();
 })
 
-editBookCancel.addEventListener('click', ()=>{
+editBookCancel.addEventListener('click', () => {
     editBookName.value = ''
     editBookAuthor.value = ''
     editBookTotal.value = ''
@@ -288,12 +288,10 @@ editBookCancel.addEventListener('click', ()=>{
     editBookInputs.forEach(element => element.style.backgroundColor = 'white')
 })
 
-newBookInputs.forEach(element => element.addEventListener('input', ()=>{
+newBookInputs.forEach(element => element.addEventListener('input', () => {
     element.style.backgroundColor = 'white'
 }))
 
-editBookInputs.forEach(element => element.addEventListener('input', ()=>{
+editBookInputs.forEach(element => element.addEventListener('input', () => {
     element.style.backgroundColor = 'white'
 }))
-
-removeLoadingScreen()
