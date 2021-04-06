@@ -1,9 +1,6 @@
 html {
     min-width: 292px;
     scroll-behavior: smooth;
-    background-image: url("bgdark.jpg");
-    background-size: cover;
-    background-attachment: fixed;
 }
 
 a {
@@ -22,6 +19,9 @@ a {
 body {
     height: 100%;
     width: 100%;
+    background-image: url("bgdark.jpg");
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 nav {
