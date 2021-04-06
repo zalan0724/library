@@ -1,6 +1,7 @@
-.wallpaper {
-    background: url(bgLight.jpg);
+html {
+    background: url("bgLight.jpg");
     background-size: cover;
+    background-attachment: fixed;
 }
 
 nav {
