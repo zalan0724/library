@@ -9,24 +9,25 @@
     padding: 15px;
     color: white;
     filter: drop-shadow(7px 7px 12px black);
+    transition-duration: 0.2s;
 }
 
 .bookTop {
     width: 100%;
     text-align: center;
-    letter-spacing: 1px;
 }
 
 .bookBottom {
     display: inline-block;
-    width: 100%;
+    width: 170px;
     text-align: left;
-    position: relative;
-    top: 108px;
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
 }
 
 .bookTitle {
-    font-size: 22pt;
+    font-size: 18pt;
     font-weight: bold;
 }
 
@@ -52,7 +53,7 @@
     line-height: 0px;
     font-size: 12pt;
     color: white;
-    box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.651);
+    box-shadow: inset 0px 0px 4px rgb(29, 29, 29);
     cursor: pointer;
 }
 

@@ -9,7 +9,9 @@ const emptyContainer = document.querySelector('.emptyContainer')
 const inputs = document.querySelectorAll('input')
 const loadingScreen = document.querySelector('#loadingScreen')
 
-let visualMode = 'dark';
+//Visual modes
+let visualMode = 'dark'
+const visualSwitch = document.querySelector('.switch input')
 
 //Adding new book elements
 const newBookInterface = document.querySelector('.newBookInterface')
@@ -69,12 +71,13 @@ const getListItem = function(name, id) {
     return listTemplate
 }
 
-const Book = function(name, author, totalPage, currentPage, id) {
+const Book = function(name, author, totalPage, currentPage, id, read) {
     this.name = name
     this.author = author
     this.totalPage = totalPage
     this.currentPage = currentPage
     this.id = id
+    this.read = read
 }
 
 function getWidth() {
@@ -183,6 +186,7 @@ function refreshLibrary() {
     for (let i = 0; i <= bookLibrary.length - 1; i++) {
         let bookTemplate = document.createElement('div')
         let listTemplate = document.createElement('div')
+
         bookTemplate.innerHTML = getBookCard(
             bookLibrary[i].name, bookLibrary[i].author, bookLibrary[i].currentPage, bookLibrary[i].totalPage, bookLibrary[i].id)
         listTemplate.innerHTML = getListItem(
@@ -200,7 +204,7 @@ function refreshLibrary() {
 
 function addBookToLibrary() {
     if (checkAddInputs() === 127) {
-        let newBook = new Book(giveBookName.value, giveBookAuthor.value, giveBookTotal.value, giveBookCurrent.value, getNextID())
+        let newBook = new Book(giveBookName.value, giveBookAuthor.value, giveBookTotal.value, giveBookCurrent.value, getNextID(), false)
         bookLibrary.push(newBook)
         console.log('New book added')
         refreshLibrary()
@@ -218,18 +222,20 @@ function addBookToLibrary() {
 
 function saveData() {
     localStorage['bookLibrary'] = JSON.stringify(bookLibrary)
-    localStorage['visualMode'] = JSON.stringify(visualMode)
+    localStorage['visualMode'] = visualMode
 }
 
 function restoreData() {
     bookLibrary = JSON.parse(localStorage.getItem('bookLibrary'))
-    visualMode = JSON.parse(localStorage.getItem('visualMode'))
+    visualMode = localStorage.getItem('visualMode')
+
+    if (visualMode == 'light') toggleVisual(true)
 }
 
 (function prepareLocalLibrary() {
     if (localStorage.getItem('bookLibrary') == null) {
         localStorage.setItem('bookLibrary', JSON.stringify(bookLibrary))
-        localStorage.setItem('visualMode', JSON.stringify(visualMode))
+        localStorage.setItem('visualMode', visualMode)
     } else {
         restoreData()
         refreshLibrary()
@@ -240,9 +246,15 @@ function showMenu() {
     if (getWidth() < 839) {
         nav.style.display = 'inline-block'
         menuButton.setAttribute('onclick', 'hideMenu()')
-        menuImage.setAttribute('src', 'cross.svg')
-        menuButton.style.backgroundColor = 'white'
-        menuButton.style.bottom = '15px'
+        menuButton.style.bottom = '64px'
+        menuButton.innerHTML = '<i class="fas fa-times fa-2x"></i>'
+        if (visualMode == 'dark') {
+            menuButton.style.backgroundColor = 'white'
+            document.querySelector('.menuButton .fas').style.color = '#1A1A1A'
+        } else if (visualMode == 'light') {
+            menuButton.style.backgroundColor = '#1A1A1A'
+            document.querySelector('.menuButton .fas').style.color = 'white'
+        }
     }
 }
 
@@ -250,16 +262,47 @@ function hideMenu() {
     if (getWidth() < 839) {
         nav.style.display = 'none'
         menuButton.setAttribute('onclick', 'showMenu()')
-        menuImage.setAttribute('src', 'menu.svg')
-        menuButton.style.backgroundColor = '#1A1A1A'
         menuButton.style.bottom = '80px'
+        menuButton.innerHTML = '<i class="fas fa-bars fa-2x">'
+        menuButton.style.backgroundColor = null
+        document.querySelector('.menuButton .fas').style.color = null
     }
 }
 
-function toggleDark() {
-
+function toggleVisual(firstTime) {
+    if (visualSwitch.checked == true || firstTime) {
+        visualMode = 'light'
+        localStorage['visualMode'] = visualMode
+        visualSwitch.checked = true
+        let lightStyle = document.createElement('link')
+        lightStyle.setAttribute('rel', 'stylesheet')
+        lightStyle.setAttribute('type', 'text/css')
+        lightStyle.setAttribute('href', 'lightMode.css')
+        lightStyle.setAttribute('id', 'lightStyleSheet')
+        document.querySelector('head').appendChild(lightStyle)
+    } else if (visualSwitch.checked == false) {
+        visualMode = 'dark'
+        localStorage['visualMode'] = visualMode
+        visualSwitch.checked = false
+        document.querySelector('head').removeChild(document.querySelector('#lightStyleSheet'))
+    }
 }
 
+/*
+function toggleVisual() {
+    if (visualMode == 'dark') visualMode = 'light'
+    else if (visualMode == 'light') visualMode = 'dark'
+
+    localStorage['visualMode'] = visualMode
+
+    nav.classList.toggle('navL')
+    document.querySelector('.title').classList.toggle('titleL')
+    addButton.classList.toggle('addButtonL')
+    document.querySelectorAll('.listItem').forEach(element => element.classList.toggle('listItemL'))
+    document.querySelectorAll('.listName').forEach(element => element.classList.toggle('listNameL'))
+    document.querySelectorAll('.book').forEach(element => element.classList.toggle('bookL'))
+}
+*/
 //EventListeners
 addButton.addEventListener('click', () => {
     newBookInterface.style.display = 'flex'
@@ -295,3 +338,5 @@ newBookInputs.forEach(element => element.addEventListener('input', () => {
 editBookInputs.forEach(element => element.addEventListener('input', () => {
     element.style.backgroundColor = 'white'
 }))
+
+visualSwitch.addEventListener('change', () => toggleVisual(false))

@@ -1,4 +1,4 @@
-.editBookInterface{
+.editBookInterface {
     box-sizing: border-box;
     z-index: 14;
     position: fixed;
@@ -8,10 +8,10 @@
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0,0,0,0.75);
+    background-color: rgba(0, 0, 0, 0.75);
 }
 
-.editBookTab{
+.editBookTab {
     z-index: 15;
     display: inline-block;
     position: relative;
@@ -23,56 +23,60 @@
     font-size: 24pt;
 }
 
-.editDetail{
+.editDetail {
     margin-bottom: 20px;
     margin-top: 20px;
 }
 
-.editDetail span{
+.editDetail span {
     color: white;
     display: inline-block;
     padding: 6px;
     border-radius: 5px;
     background-color: rgb(49, 49, 49);
 }
-.editDetail input{
+
+.editDetail input {
     border-bottom: 3px solid #1A1A1A;
     font-size: 24pt;
     padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
 }
 
-.editBookButton{
+.editBookButton {
     display: inline-block;
     font-size: 24pt;
     padding: 6px;
-    border-radius: 5px;
+    border-radius: 8px;
     outline: none;
     box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.651);
 }
 
-#editBookCancel{
+#editBookCancel {
     background-color: rgb(76, 76, 153);
     transition-duration: 0.2s;
 }
 
-#editBookCancel:hover{
+#editBookCancel:hover {
     background-color: rgb(103, 103, 204);
 }
 
-#editBookSave{
+#editBookSave {
     background-color: rgb(66, 145, 66);
     transition-duration: 0.2s;
 }
 
-#editBookSave:hover{
+#editBookSave:hover {
     background-color: rgb(82, 175, 82);
 }
 
-#editBookRemove{
+#editBookRemove {
     background-color: rgb(177, 83, 83);
     transition-duration: 0.2s;
 }
 
-#editBookRemove:hover{
+#editBookRemove:hover {
     background-color: rgb(216, 102, 102);
 }

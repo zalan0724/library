@@ -1,4 +1,4 @@
-.newBookInterface{
+.newBookInterface {
     box-sizing: border-box;
     z-index: 14;
     position: fixed;
@@ -8,11 +8,11 @@
     justify-content: center;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.75);
+    background-color: rgba(0, 0, 0, 0.75);
     transition-duration: 2s;
 }
 
-.newBookTab{
+.newBookTab {
     z-index: 15;
     position: relative;
     background-color: rgb(49, 49, 49);
@@ -24,47 +24,51 @@
     font-size: 24pt;
 }
 
-.giveDetail{
+.giveDetail {
     margin-bottom: 20px;
     margin-top: 20px;
 }
 
-.giveDetail span{
+.giveDetail span {
     color: white;
     display: inline-block;
     padding: 6px;
     border-radius: 5px;
     background-color: rgb(49, 49, 49);
 }
-.giveDetail input{
+
+.giveDetail input {
     border-bottom: 3px solid #1A1A1A;
     font-size: 24pt;
     padding: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
 }
 
-.newBookButton{
+.newBookButton {
     display: inline-block;
     font-size: 24pt;
     padding: 6px;
-    border-radius: 5px;
+    border-radius: 8px;
     outline: none;
     box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.651);
 }
 
-
-#newBookCancel{
+#newBookCancel {
     background-color: rgb(177, 83, 83);
     transition-duration: 0.2s;
 }
-#newBookCancel:hover{
+
+#newBookCancel:hover {
     background-color: rgb(216, 102, 102);
 }
 
-#newBookAdd{
+#newBookAdd {
     background-color: rgb(66, 145, 66);
     transition-duration: 0.2s;
 }
 
-#newBookAdd:hover{
+#newBookAdd:hover {
     background-color: rgb(82, 175, 82);
 }

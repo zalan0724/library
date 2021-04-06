@@ -1,3 +1,83 @@
-.navL {
+nav {
     background-color: white;
+    color: black;
+}
+
+.title {
+    border-color: black;
+}
+
+.addButton {
+    background-color: white;
+    color: black;
+}
+
+.addButton .fas {
+    color: black;
+}
+
+.listItem {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    filter: drop-shadow(4px 4px 6px rgba(0, 0, 0, 0.541));
+}
+
+.listName {
+    color: black;
+}
+
+.listButton {
+    box-shadow: inset 0px 0px 6px rgba(0, 0, 0, 0.24);
+}
+
+.book {
+    background-color: white;
+}
+
+.bookTop {
+    color: black;
+}
+
+.bookBottom {
+    color: black;
+}
+
+.bookButton {
+    box-shadow: inset 0px 0px 6px rgba(0, 0, 0, 0.24);
+}
+
+.menuButton {
+    background-color: white;
+}
+
+.menuButton .fas {
+    color: #1A1A1A;
+}
+
+.newBookTab {
+    background-color: white;
+}
+
+.giveDetail span {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.541));
+}
+
+.newBookButton {
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.397);
+}
+
+.editBookTab {
+    background-color: white;
+}
+
+.editDetail span {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    filter: drop-shadow(5px 5px 7px rgba(0, 0, 0, 0.541));
+}
+
+.editBookButton {
+    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.397);
 }

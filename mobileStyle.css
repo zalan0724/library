@@ -1,80 +1,73 @@
-
 @media (max-width: 839px) {
     nav {
-      position: fixed;
-      display: none;
-      width: 100%;
-      height: 100%;
-      z-index: 12;
-      left:0px;
-      padding-right: 20px;
+        position: fixed;
+        display: none;
+        width: 100%;
+        height: 100%;
+        z-index: 12;
+        left: 0px;
+        padding-right: 20px;
     }
-
-    .listItem{
+    .listItem {
         width: 100%;
         min-width: 303px;
         min-height: 60px;
     }
-
-    .listButton{
+    .listButton {
         height: 40px;
         font-weight: bold;
-        padding-left: 10px;
-        padding-right: 10px;
-        box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.651);
+        padding-left: 12px;
+        padding-right: 12px;
+        /*box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.651);*/
         letter-spacing: 1px;
+        border-radius: 10px;
     }
-
-    #listRemoveButton{
+    #listRemoveButton {
         margin-right: 0px;
     }
-
-    .contentBox{
+    .contentBox {
         padding-right: 30px;
     }
-    .content{
+    .content {
         align-items: center;
         justify-content: center;
     }
-
-
-    .addButton{
+    .addButton {
         right: 15px;
     }
-
-    .newBookTab{
+    .addButton:hover {
+        transform: none;
+    }
+    .newBookTab {
         z-index: 15;
         width: 100%;
         height: 100%;
         border-radius: 0px;
         padding-top: 0px;
     }
-    
-    .giveDetail span{
+    .giveDetail span {
         display: block;
         margin-bottom: 10px;
     }
-
-    .editBookTab{
+    .editBookTab {
         z-index: 15;
         width: 100%;
         height: 100%;
         border-radius: 0px;
         padding-top: 0px;
     }
-    
-    .editDetail span{
+    .editDetail span {
         display: block;
         margin-bottom: 10px;
     }
-
-    .emptyContainer{
+    .emptyContainer {
         padding-right: 20px;
     }
-
-    .menuButton{
+    .menuButton {
         display: flex;
+        background-color: #1A1A1A;
     }
-
-
+    .menuButton .fas {
+        color: white;
+    }
 }
