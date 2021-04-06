@@ -37,6 +37,7 @@
     }
     .addButton:hover {
         transform: none;
+        -webkit-transform: none;
     }
     .newBookTab {
         z-index: 15;

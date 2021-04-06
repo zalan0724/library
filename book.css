@@ -10,6 +10,7 @@
     color: white;
     filter: drop-shadow(7px 7px 12px black);
     transition-duration: 0.2s;
+    -webkit-transition-duration: 0.2s;
     position: relative;
 }
 
@@ -68,6 +69,7 @@
 #editButton {
     background-color: rgb(76, 76, 153);
     transition-duration: 0.2s;
+    -webkit-transition-duration: 0.2s;
 }
 
 #editButton:hover {
@@ -76,7 +78,7 @@
 
 #plusButton {
     background-color: rgb(66, 145, 66);
-    transition-duration: 0.2s;
+    -webkit-transition-duration: 0.2s;
 }
 
 #plusButton:hover {
@@ -85,7 +87,7 @@
 
 #minusButton {
     background-color: rgb(177, 83, 83);
-    transition-duration: 0.2s;
+    -webkit-transition-duration: 0.2s;
 }
 
 #minusButton:hover {

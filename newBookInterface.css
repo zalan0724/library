@@ -9,7 +9,8 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.75);
-    transition-duration: 2s;
+    transition-duration: 0.2s;
+    -webkit-transition-duration: 0.2s;
 }
 
 .newBookTab {
@@ -58,6 +59,7 @@
 #newBookCancel {
     background-color: rgb(177, 83, 83);
     transition-duration: 0.2s;
+    -webkit-transition-duration: 0.2s;
 }
 
 #newBookCancel:hover {
@@ -67,6 +69,7 @@
 #newBookAdd {
     background-color: rgb(66, 145, 66);
     transition-duration: 0.2s;
+    -webkit-transition-duration: 0.2s;
 }
 
 #newBookAdd:hover {
