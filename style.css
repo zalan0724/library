@@ -19,7 +19,7 @@ a {
 body {
     height: 100%;
     width: 100%;
-    background: url("bgd.jpg");
+    background: url("backgrounddark.jpg");
     background-size: cover;
     background-attachment: fixed;
 }
