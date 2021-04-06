@@ -1,6 +1,8 @@
 html {
     min-width: 292px;
-    scroll-behavior: smooth;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
 }
 
 a {
@@ -22,6 +24,9 @@ body {
     background: url("backgrounddark.jpg");
     background-size: cover;
     background-attachment: fixed;
+    scroll-behavior: smooth;
+    overflow: auto;
+    position: relative;
 }
 
 nav {
