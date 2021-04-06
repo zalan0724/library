@@ -1,7 +1,7 @@
 html {
     min-width: 292px;
     scroll-behavior: smooth;
-    background: url("bgDark.jpg");
+    background-image: url("bgDark.jpg");
     background-size: cover;
     background-attachment: fixed;
 }
