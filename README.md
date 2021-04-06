@@ -8,10 +8,10 @@ Already added features:
 - List of books to navigate faster
 - Mobile optimalized
 - Local save is present
+- Dark/Light mode
 
 Upcomming feauters:
 - Login with google account
-- Dark/Light mode
 - Adding cover image
 - Toggle read/currently reading status
 
