@@ -44,7 +44,7 @@
         height: 100%;
         border-radius: 0px;
         padding-top: 0px;
-        overflow: auto;
+        overflow-y: auto;
     }
     .giveDetail span {
         display: block;
@@ -59,6 +59,17 @@
         height: 100%;
         border-radius: 0px;
         padding-top: 0px;
+        overflow-y: auto;
+    }
+    .editDetail span {
+        display: block;
+        margin-bottom: 10px;
+    }
+    .editDetail input {
+        width: 100%;
+    }
+    .editBookButton {
+        margin-bottom: 10px;
     }
     .emptyContainer {
         padding-right: 20px;
