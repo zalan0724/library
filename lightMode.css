@@ -71,7 +71,7 @@ nav {
 }
 
 .newBookButton {
-    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.397);
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.726);
 }
 
 .editBookTab {
@@ -86,4 +86,8 @@ nav {
 
 .editBookButton {
     box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.397);
+}
+
+.readSpan {
+    color: black;
 }

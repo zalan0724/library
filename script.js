@@ -11,7 +11,7 @@ const loadingScreen = document.querySelector('#loadingScreen')
 
 //Visual modes
 let visualMode = 'dark'
-const visualSwitch = document.querySelector('.switch input')
+const visualSwitch = document.querySelector('.visualSwitch input')
 
 //Adding new book elements
 const newBookInterface = document.querySelector('.newBookInterface')
@@ -22,6 +22,7 @@ const giveBookName = document.querySelector('#giveBookName')
 const giveBookAuthor = document.querySelector('#giveBookAuthor')
 const giveBookTotal = document.querySelector('#giveBookTotal')
 const giveBookCurrent = document.querySelector('#giveBookCurrent')
+const readSwitch = document.querySelector('.newSwitch input')
 
 //Editing book elements
 const editBookInterface = document.querySelector('.editBookInterface')
@@ -210,7 +211,7 @@ function refreshLibrary() {
 
 function addBookToLibrary() {
     if (checkAddInputs() === 127) {
-        let newBook = new Book(giveBookName.value, giveBookAuthor.value, giveBookTotal.value, giveBookCurrent.value, getNextID(), false)
+        let newBook = new Book(giveBookName.value, giveBookAuthor.value, giveBookTotal.value, giveBookCurrent.value, getNextID(), readSwitch.checked)
         bookLibrary.push(newBook)
         console.log('New book added')
         refreshLibrary()
@@ -294,21 +295,6 @@ function toggleVisual(firstTime) {
     }
 }
 
-/*
-function toggleVisual() {
-    if (visualMode == 'dark') visualMode = 'light'
-    else if (visualMode == 'light') visualMode = 'dark'
-
-    localStorage['visualMode'] = visualMode
-
-    nav.classList.toggle('navL')
-    document.querySelector('.title').classList.toggle('titleL')
-    addButton.classList.toggle('addButtonL')
-    document.querySelectorAll('.listItem').forEach(element => element.classList.toggle('listItemL'))
-    document.querySelectorAll('.listName').forEach(element => element.classList.toggle('listNameL'))
-    document.querySelectorAll('.book').forEach(element => element.classList.toggle('bookL'))
-}
-*/
 //EventListeners
 addButton.addEventListener('click', () => {
     newBookInterface.style.display = 'flex'
@@ -316,6 +302,7 @@ addButton.addEventListener('click', () => {
     giveBookAuthor.value = ''
     giveBookTotal.value = ''
     giveBookCurrent.value = ''
+    readSwitch.checked = false
     newBookInputs.forEach(element => element.style.backgroundColor = 'white')
 })
 
@@ -346,3 +333,16 @@ editBookInputs.forEach(element => element.addEventListener('input', () => {
 }))
 
 visualSwitch.addEventListener('change', () => toggleVisual(false))
+
+giveBookTotal.addEventListener('input', () => {
+    if (readSwitch.checked) giveBookCurrent.value = giveBookTotal.value
+})
+
+readSwitch.addEventListener('change', () => {
+    if (readSwitch.checked) {
+        giveBookCurrent.disabled = true
+        giveBookCurrent.value = giveBookTotal.value
+    } else if (!readSwitch.checked) {
+        giveBookCurrent.disabled = false
+    }
+})

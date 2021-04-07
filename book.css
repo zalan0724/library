@@ -98,6 +98,8 @@
 }
 
 .readBook {
+    transition-duration: 0.2s;
+    -webkit-transition-duration: 0.2s;
     border: 5px solid green;
     padding: 10px;
 }
