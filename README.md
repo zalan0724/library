@@ -11,7 +11,7 @@ Already added features:
 - Dark/Light mode
 - Toggle read/currently reading status
 
-Upcomming feauters:
+Upcomming features:
 - Login with google account
 - Adding cover image
 
