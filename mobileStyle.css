@@ -50,16 +50,15 @@
         display: block;
         margin-bottom: 10px;
     }
+    .giveDetail input {
+        width: 100%;
+    }
     .editBookTab {
         z-index: 15;
         width: 100%;
         height: 100%;
         border-radius: 0px;
         padding-top: 0px;
-    }
-    .editDetail span {
-        display: block;
-        margin-bottom: 10px;
     }
     .emptyContainer {
         padding-right: 20px;
