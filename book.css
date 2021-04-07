@@ -21,11 +21,12 @@
 
 .bookBottom {
     display: inline-block;
-    width: 170px;
+    width: 100%;
     text-align: left;
     position: absolute;
-    left: 15px;
-    bottom: 15px;
+    left: 0px;
+    bottom: 0px;
+    padding: 15px;
 }
 
 .bookTitle {
@@ -94,4 +95,13 @@
 
 #minusButton:hover {
     background-color: rgb(119, 56, 56);
+}
+
+.readBook {
+    border: 5px solid green;
+    padding: 10px;
+}
+
+.bookBottomRead {
+    padding: 10px;
 }

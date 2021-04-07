@@ -127,6 +127,7 @@ function addCurrent(id) {
     if (bookLibrary[id].currentPage < bookLibrary[id].totalPage) {
         bookLibrary[id].currentPage++
             console.log('Increased by one')
+        if (bookLibrary[id].currentPage == bookLibrary[id].totalPage) bookLibrary[id].read = true
         refreshLibrary()
     }
 
@@ -136,6 +137,7 @@ function reduceCurrent(id) {
     if (bookLibrary[id].currentPage > 1) {
         bookLibrary[id].currentPage--
             console.log('Decreased by one')
+        if (bookLibrary[id].currentPage < bookLibrary[id].totalPage) bookLibrary[id].read = false
         refreshLibrary()
     }
 
@@ -193,6 +195,10 @@ function refreshLibrary() {
             bookLibrary[i].name, bookLibrary[i].id)
         content.appendChild(bookTemplate)
         navList.appendChild(listTemplate)
+        if (bookLibrary[i].read) {
+            document.getElementById(bookLibrary[i].id).setAttribute('class', 'book readBook')
+            document.getElementById(bookLibrary[i].id).querySelector('.bookBottom').setAttribute('class', 'bookBottom bookBottomRead')
+        }
     }
     if (bookLibrary.length === 0) {
         emptyContainer.style.display = 'flex'
