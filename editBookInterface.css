@@ -1,6 +1,6 @@
 .editBookInterface {
     box-sizing: border-box;
-    z-index: 14;
+    z-index: 6;
     position: fixed;
     top: 0px;
     display: none;
@@ -12,7 +12,7 @@
 }
 
 .editBookTab {
-    z-index: 15;
+    z-index: 7;
     display: inline-block;
     position: relative;
     background-color: #1A1A1A;

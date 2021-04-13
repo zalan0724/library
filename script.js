@@ -7,7 +7,7 @@ const content = document.querySelector('.content')
 const navList = document.querySelector('.list')
 const emptyContainer = document.querySelector('.emptyContainer')
 const inputs = document.querySelectorAll('input')
-const loadingScreen = document.querySelector('#loadingScreen')
+const navMobile = document.querySelector('.navMobile')
 
 //Visual modes
 let visualMode = 'dark'
@@ -252,6 +252,7 @@ function restoreData() {
 function showMenu() {
     if (getWidth() < 839) {
         nav.style.display = 'inline-block'
+        navMobile.style.display = 'none'
         menuButton.setAttribute('onclick', 'hideMenu()')
         menuButton.style.bottom = '64px'
         menuButton.innerHTML = '<i class="fas fa-times fa-2x"></i>'
@@ -268,6 +269,7 @@ function showMenu() {
 function hideMenu() {
     if (getWidth() < 839) {
         nav.style.display = 'none'
+        navMobile.style.display = 'inline-block'
         menuButton.setAttribute('onclick', 'showMenu()')
         menuButton.style.bottom = '80px'
         menuButton.innerHTML = '<i class="fas fa-bars fa-2x">'
@@ -346,3 +348,5 @@ readSwitch.addEventListener('change', () => {
         giveBookCurrent.disabled = false
     }
 })
+
+navMobile.addEventListener('click', showMenu)

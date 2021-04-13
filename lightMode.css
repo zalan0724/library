@@ -7,6 +7,16 @@ body {
 nav {
     background-color: white;
     color: black;
+    box-shadow: -4px 0px 5px rgb(39, 39, 39);
+}
+
+.navMobile {
+    background-color: white;
+    color: black;
+}
+
+.titleMobile {
+    border-color: black;
 }
 
 .title {
